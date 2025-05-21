@@ -4,10 +4,10 @@ include '../components/connect.php';
 
 session_start();
 
-$admin_id = $_SESSION['admin_id'];
+$rider_id = $_SESSION['rider_id'];
 
-if(!isset($admin_id)){
-   header('location:admin_login.php');
+if(!isset($rider_id)){
+   header('location:rider_login.php');
 }
 
 ?>
@@ -30,9 +30,9 @@ if(!isset($admin_id)){
 </head>
 <body style="background-image: url('images/food-1024x683.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 
-<?php include '../components/admin_header.php' ?>
+<?php include '../components/rider_header.php' ?>
 
-<!-- admin dashboard section starts  -->
+<!-- rider dashboard section starts  -->
 
 <section class="dashboard">
 
@@ -85,37 +85,17 @@ if(!isset($admin_id)){
       <a href="placed_orders.php" class="btn">see orders</a>
    </div>
 
-   <div class="box">
-      <?php
-         $select_products = $conn->prepare("SELECT * FROM `products`");
-         $select_products->execute();
-         $numbers_of_products = $select_products->rowCount();
-      ?>
-      <h3><?= $numbers_of_products; ?></h3>
-      <p>products added</p>
-      <a href="products.php" class="btn">see products</a>
-   </div>
+   
 
    <div class="box">
       <?php
-         $select_users = $conn->prepare("SELECT * FROM `users`");
-         $select_users->execute();
-         $numbers_of_users = $select_users->rowCount();
+         $select_riders = $conn->prepare("SELECT * FROM `rider`");
+         $select_riders->execute();
+         $numbers_of_riders = $select_riders->rowCount();
       ?>
-      <h3><?= $numbers_of_users; ?></h3>
-      <p>users accounts</p>
-      <a href="users_accounts.php" class="btn">see users</a>
-   </div>
-
-   <div class="box">
-      <?php
-         $select_admins = $conn->prepare("SELECT * FROM `admin`");
-         $select_admins->execute();
-         $numbers_of_admins = $select_admins->rowCount();
-      ?>
-      <h3><?= $numbers_of_admins; ?></h3>
-      <p>admins</p>
-      <a href="admin_accounts.php" class="btn">see admins</a>
+      <h3><?= $numbers_of_riders; ?></h3>
+      <p>riders</p>
+      <a href="riders_accounts.php" class="btn">see riders</a>
    </div>
 
    <div class="box">
@@ -133,7 +113,7 @@ if(!isset($admin_id)){
 
 </section>
 
-<!-- admin dashboard section ends -->
+<!-- rider dashboard section ends -->
 
 
 

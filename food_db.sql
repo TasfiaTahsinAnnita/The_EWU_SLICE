@@ -24,8 +24,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Table structure for table `rider`
 --
+
+CREATE TABLE `rider` (
+  `id` int(100) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rider`
+--
+
+INSERT INTO `rider` (`id`, `name`, `password`) VALUES
+(1, 'rider', '7c222fb2927d828af22f592134e8932480637c0d');
+
 
 CREATE TABLE `admin` (
   `id` int(100) NOT NULL,
@@ -38,7 +52,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `name`, `password`) VALUES
-(1, 'admin', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2');
+(1, 'admin', '7c222fb2927d828af22f592134e8932480637c0d');
 
 -- --------------------------------------------------------
 
