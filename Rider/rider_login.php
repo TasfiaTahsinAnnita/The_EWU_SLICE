@@ -41,8 +41,44 @@ if(isset($_POST['submit'])){
    <!-- custom css file link  -->
    <link rel="stylesheet" href="../css/admin_style.css">
 
+   <style>
+      /* Header Styling */
+      header {
+         display: flex;
+         align-items: center;
+         background-color: #333;
+         padding: 15px;
+         color: #fff;
+         justify-content: space-between; /* Ensures space between logo and text */
+         padding-left: 30px; /* Adjusts the left padding for logo */
+         padding-right: 30px; /* Adjusts the right padding for centering text */
+      }
+
+      header img {
+         width: 150px;
+         height: 75px;
+         margin-right: 20px;
+      }
+
+      header h1 {
+         font-size: 24px;
+         font-weight: bold;
+         letter-spacing: 1px;
+         text-transform: uppercase;
+         position: absolute;
+         left: 50%;
+         transform: translateX(-50%); /* Centers the text exactly */
+      }
+   </style>
+
 </head>
-<body  style="background-image: url('images/food-1024x683.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+<body style="background-image: url('images/food-1024x683.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+
+<!-- Header Section -->
+<header>
+   <img src="images/riderslice.png" alt="Logo"> <!-- Replace with your logo image -->
+   <h1>Rider Portal</h1>
+</header>
 
 <?php
 if(isset($message)){
@@ -57,31 +93,17 @@ if(isset($message)){
 }
 ?>
 
-<!-- rider login form section starts  -->
-
+<!-- Rider login form section starts  -->
 <section class="form-container" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; width: 300px; margin: auto; text-align: center;">
-
    <form action="" method="POST">
       <h3 style="color: #000000;">login now</h3>
       <input type="text" name="name" maxlength="20" required placeholder="enter your username" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="password" name="pass" maxlength="20" required placeholder="enter your password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="submit" value="login now" name="submit" class="btn" style="background-color: #4CAF50; color: #fff; border: none; padding: 10px 15px; cursor: pointer;">
    </form>
-
 </section>
 
-
-<!-- rider login form section ends -->
-
-
-
-
-
-
-
-
-
-
+<!-- Rider login form section ends -->
 
 </body>
 </html>
