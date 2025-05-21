@@ -3,14 +3,13 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2022 at 05:15 PM
+-- Generation Time: May 21, 2025
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -20,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `food_db`
 --
+CREATE DATABASE IF NOT EXISTS `food_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `food_db`;
 
 -- --------------------------------------------------------
 
@@ -67,7 +68,8 @@ CREATE TABLE `cart` (
   `name` varchar(100) NOT NULL,
   `price` int(10) NOT NULL,
   `quantity` int(10) NOT NULL,
-  `image` varchar(100) NOT NULL
+  `image` varchar(100) NOT NULL,
+  `toppings` TEXT DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -99,7 +101,7 @@ CREATE TABLE `orders` (
   `email` varchar(50) NOT NULL,
   `method` varchar(50) NOT NULL,
   `address` varchar(500) NOT NULL,
-  `total_products` varchar(1000) NOT NULL,
+  `total_products` TEXT NOT NULL,
   `total_price` int(100) NOT NULL,
   `placed_on` date NOT NULL DEFAULT current_timestamp(),
   `payment_status` varchar(20) NOT NULL DEFAULT 'pending'
@@ -118,6 +120,29 @@ CREATE TABLE `products` (
   `price` int(10) NOT NULL,
   `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `toppings`
+--
+
+CREATE TABLE `toppings` (
+  `id` int(100) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `toppings`
+--
+
+INSERT INTO `toppings` (`name`, `price`) VALUES
+('Extra Cheese', 2.50),
+('Mushrooms', 1.50),
+('Olives', 1.25),
+('Pepperoni', 2.00);
 
 -- --------------------------------------------------------
 
@@ -209,10 +234,17 @@ ALTER TABLE `products`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `toppings`
+--
+ALTER TABLE `toppings`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
