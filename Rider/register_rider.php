@@ -4,10 +4,10 @@ include '../components/connect.php';
 
 session_start();
 
-$admin_id = $_SESSION['admin_id'];
+$admin_id = $_SESSION['rider_id'];
 
 if(!isset($admin_id)){
-   header('location:admin_login.php');
+   header('location:rider_login.php');
 };
 
 if(isset($_POST['submit'])){
@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
    $cpass = sha1($_POST['cpass']);
    $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
 
-   $select_admin = $conn->prepare("SELECT * FROM `admin` WHERE name = ?");
+   $select_admin = $conn->prepare("SELECT * FROM `rider` WHERE name = ?");
    $select_admin->execute([$name]);
    
    if($select_admin->rowCount() > 0){
@@ -56,7 +56,7 @@ if(isset($_POST['submit'])){
 </head>
 <body style="background-image: url('images/food-1024x683.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 
-<?php include '../components/admin_header.php' ?>
+<?php include '../components/rider_header.php' ?>
 
 <!-- register admin section starts  -->
 

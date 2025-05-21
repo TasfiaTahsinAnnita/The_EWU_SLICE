@@ -4,10 +4,10 @@ include '../components/connect.php';
 
 session_start();
 
-$admin_id = $_SESSION['admin_id'];
+$rider_id = $_SESSION['rider_id'];
 
-if(!isset($admin_id)){
-   header('location:admin_login.php');
+if(!isset($rider_id)){
+   header('location:rider_login.php');
 }
 
 if(isset($_POST['submit'])){
@@ -16,19 +16,19 @@ if(isset($_POST['submit'])){
    $name = filter_var($name, FILTER_SANITIZE_STRING);
 
    if(!empty($name)){
-      $select_name = $conn->prepare("SELECT * FROM `admin` WHERE name = ?");
+      $select_name = $conn->prepare("SELECT * FROM `rider` WHERE name = ?");
       $select_name->execute([$name]);
       if($select_name->rowCount() > 0){
          $message[] = 'username already taken!';
       }else{
-         $update_name = $conn->prepare("UPDATE `admin` SET name = ? WHERE id = ?");
-         $update_name->execute([$name, $admin_id]);
+         $update_name = $conn->prepare("UPDATE `rider` SET name = ? WHERE id = ?");
+         $update_name->execute([$name, $rider_id]);
       }
    }
 
    $empty_pass = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
-   $select_old_pass = $conn->prepare("SELECT password FROM `admin` WHERE id = ?");
-   $select_old_pass->execute([$admin_id]);
+   $select_old_pass = $conn->prepare("SELECT password FROM `rider` WHERE id = ?");
+   $select_old_pass->execute([$rider_id]);
    $fetch_prev_pass = $select_old_pass->fetch(PDO::FETCH_ASSOC);
    $prev_pass = $fetch_prev_pass['password'];
    $old_pass = sha1($_POST['old_pass']);
@@ -45,8 +45,8 @@ if(isset($_POST['submit'])){
          $message[] = 'confirm password not matched!';
       }else{
          if($new_pass != $empty_pass){
-            $update_pass = $conn->prepare("UPDATE `admin` SET password = ? WHERE id = ?");
-            $update_pass->execute([$confirm_pass, $admin_id]);
+            $update_pass = $conn->prepare("UPDATE `rider` SET password = ? WHERE id = ?");
+            $update_pass->execute([$confirm_pass, $rider_id]);
             $message[] = 'password updated successfully!';
          }else{
             $message[] = 'please enter a new password!';
@@ -76,7 +76,7 @@ if(isset($_POST['submit'])){
 </head>
 <body style="background-image: url('images/2016_09_29_12990_1475116504._large.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 
-<?php include '../components/admin_header.php' ?>
+<?php include '../components/rider_header.php' ?>
 
 <!-- admin profile update section starts  -->
 

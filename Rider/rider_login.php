@@ -11,12 +11,12 @@ if(isset($_POST['submit'])){
    $pass = sha1($_POST['pass']);
    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
 
-   $select_admin = $conn->prepare("SELECT * FROM `admin` WHERE name = ? AND password = ?");
-   $select_admin->execute([$name, $pass]);
+   $select_rider = $conn->prepare("SELECT * FROM `rider` WHERE name = ? AND password = ?");
+   $select_rider->execute([$name, $pass]);
    
-   if($select_admin->rowCount() > 0){
-      $fetch_admin_id = $select_admin->fetch(PDO::FETCH_ASSOC);
-      $_SESSION['admin_id'] = $fetch_admin_id['id'];
+   if($select_rider->rowCount() > 0){
+      $fetch_rider_id = $select_rider->fetch(PDO::FETCH_ASSOC);
+      $_SESSION['rider_id'] = $fetch_rider_id['id'];
       header('location:dashboard.php');
    }else{
       $message[] = 'incorrect username or password!';
@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Admin login</title>
+   <title>Rider login</title>
    <link rel="icon" href="images/LYgjKqzpQb.ico" type="image/x-icon">
 
    <!-- font awesome cdn link  -->
@@ -57,7 +57,7 @@ if(isset($message)){
 }
 ?>
 
-<!-- admin login form section starts  -->
+<!-- rider login form section starts  -->
 
 <section class="form-container" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; width: 300px; margin: auto; text-align: center;">
 
@@ -71,7 +71,7 @@ if(isset($message)){
 </section>
 
 
-<!-- admin login form section ends -->
+<!-- rider login form section ends -->
 
 
 

@@ -4,10 +4,10 @@ include '../components/connect.php';
 
 session_start();
 
-$admin_id = $_SESSION['admin_id'];
+$admin_id = $_SESSION['rider_id'];
 
 if(!isset($admin_id)){
-   header('location:admin_login.php');
+   header('location:rider_login.php');
 };
 
 if(isset($_POST['update_payment'])){
@@ -47,7 +47,7 @@ if(isset($_GET['delete'])){
 </head>
 <body style="background-image: url('images/food-1024x683.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 
-<?php include '../components/admin_header.php' ?>
+<?php include '../components/rider_header.php' ?>
 
 <!-- placed orders section starts  -->
 
