@@ -60,20 +60,17 @@ include 'components/add_cart.php';
 
 <section class="hero">
 
-   <div class="swiper hero-slider">
-
-      <div class="swiper-wrapper">
-
-         <div class="swiper-slide slide">
-            <div class="content">
-               <span>order online</span>
-               <h3>delicious pizza</h3>
-               <a href="menu.php" class="btn">see menus</a>
-            </div>
-            <div class="image">
-               <img src="images/home-img-1.png" alt="">
-            </div>
-         </div>
+   <div class="swiper-slide slide">
+   <div class="content">
+      <span>order online on</span>
+      <h3>The EWU Slice</h3>
+      <span>A slice of campus, life & learning</span><br>
+      <a href="menu.php" class="btn">see menus</a>
+   </div>
+   <div class="image">
+      <img src="images/home-img-1.png" alt="">
+   </div>
+</div>
 
          <div class="swiper-slide slide">
             <div class="content">

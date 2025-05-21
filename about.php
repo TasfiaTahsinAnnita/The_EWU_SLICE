@@ -53,7 +53,7 @@ if(isset($_SESSION['user_id'])){
 
       <div class="content">
          <h3>why choose us?</h3>
-         <p>At The Outer Clove Restaurant, we stand out as your preferred dining destination for several reasons. Our skilled chefs are dedicated to creating culinary wonders, ensuring each dish is a delightful masterpiece. With a diverse menu featuring fast food, main dishes, drinks, and desserts, we cater to a wide range of tastes. Quality is our priority, and we source only the freshest, premium ingredients for a flavor-rich experience. Beyond the delectable offerings, our warm ambiance, efficient service, and commitment to community connection make dining with us an unforgettable experience, setting The Outer Clove apart as the go-to choice for discerning food enthusiasts!</p>
+         <p>EWU Slice is a student-founded company from East West University dedicated to redefining online food and grocery delivery. Inspired by the convenience of modern platforms, we’ve built our own solution that combines secure user authentication, real-time order tracking, geolocation-based store selection, and fully customizable menus. Our platform empowers both customers and local vendors with features like a dynamic admin dashboard, live inventory management, and delivery optimization. With built-in PWA support, gamified discounts, and a focus on personalized service, EWU Slice is more than just a website it’s our commitment to delivering quality, convenience, and innovation in every order. </p>
          <a href="menu.php" class="btn">our menu</a>
       </div>
 
