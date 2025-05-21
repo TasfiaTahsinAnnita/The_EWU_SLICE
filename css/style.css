@@ -158,6 +158,23 @@ section{
    color:var(--red);
 }
 
+.error {
+   background-color: var(--red);
+   color: var(--white);
+}
+
+.error span {
+   color: var(--white);
+}
+
+.error i {
+   color: var(--yellow);
+}
+
+.error i:hover {
+   color: var(--black);
+}
+
 .flex-btn{
    display: flex;
    gap:1rem;
@@ -341,16 +358,17 @@ section{
 
 .products .box-container .box{
    border:var(--border);
-   padding:1.5rem;
+   padding:2rem;
    position: relative;
    overflow: hidden;
+   text-align: center; /* Center all content within the box */
 }
 
 .products .box-container .box img{
    height: 25rem;
    width: 100%;
    object-fit: contain;
-   margin-bottom: 1rem;
+   margin-bottom: 1.5rem;
 }
 
 .products .box-container .box .fa-eye,
@@ -376,19 +394,11 @@ section{
 }
 
 .products .box-container .box .fa-eye{
-   left: -10rem;
+   left: 1rem; /* Always visible for consistency */
 }
 
 .products .box-container .box .fa-shopping-cart{
-   right: -10rem;
-}
-
-.products .box-container .box:hover .fa-eye{
-   left: 1rem;
-}
-
-.products .box-container .box:hover .fa-shopping-cart{
-   right: 1rem;
+   right: 1rem; /* Always visible for consistency */
 }
 
 .products .box-container .box .cat{
@@ -410,12 +420,12 @@ section{
 .products .box-container .box .flex{
    display: flex;
    align-items: center;
-   gap:1rem;
-   margin-top: 1.5rem;
+   justify-content: center; /* Center the price, quantity, and edit button */
+   gap:1.5rem;
+   margin:1.5rem 0;
 }
 
 .products .box-container .box .flex .price{
-   margin-right: auto;
    font-size: 2.5rem;
    color:var(--black);
 }
@@ -426,19 +436,22 @@ section{
 }
 
 .products .box-container .box .flex .qty{
-   padding:1rem;
+   padding:0.8rem;
    border:var(--border);
    font-size: 1.8rem;
    color:var(--black);
+   width: 6rem; /* Fixed width for consistency */
+   text-align: center;
 }
 
 .products .box-container .box .flex .fa-edit{
-   width: 5rem;
+   width: 4.5rem;
    background-color: var(--yellow);
    color:var(--black);
    cursor: pointer;
    font-size: 1.8rem;
    height: 4.5rem;
+   line-height: 4.3rem;
    border:var(--border);
 }
 
@@ -466,13 +479,59 @@ section{
 }
 
 .products .box-container .box .sub-total{
-   margin-top: 1rem;
+   margin-top: 1.5rem;
    font-size: 1.8rem;
    color:var(--light-color);
+   text-align: center; /* Center the subtotal */
 }
 
 .products .box-container .box .sub-total span{
    color:var(--red);
+}
+
+.products .box-container .box .toppings {
+   margin-top: 1.5rem;
+   padding-top: 1rem;
+   border-top: var(--border);
+}
+
+.products .box-container .box .toppings p {
+   font-size: 1.8rem;
+   color: var(--black);
+   margin-bottom: 1rem;
+   text-transform: capitalize;
+   text-align: center; /* Center the "Toppings:" title */
+}
+
+.products .box-container .box .toppings label {
+   font-size: 1.6rem;
+   color: var(--light-color);
+   display: flex;
+   align-items: center;
+   justify-content: center; /* Center the checkbox and label text */
+   margin: 0.8rem 0;
+}
+
+.products .box-container .box .toppings input[type="checkbox"] {
+   margin-right: 0.8rem;
+}
+
+.products .box-container .box .toppings button {
+   display: block;
+   margin: 1rem auto; /* Center the button */
+   font-size: 1.6rem;
+   padding: 0.8rem 2rem;
+   background-color: var(--yellow);
+   color: var(--black);
+   border: var(--border);
+   cursor: pointer;
+   text-transform: capitalize;
+   transition: .2s linear;
+}
+
+.products .box-container .box .toppings button:hover {
+   background-color: var(--black);
+   color: var(--white);
 }
 
 .products .more-btn{
@@ -921,18 +980,6 @@ section{
    color:var(--white);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 .footer .grid{
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
@@ -979,7 +1026,6 @@ section{
    color:var(--white);
    font-size: 2rem;
    text-transform: capitalize;
-   /* padding-bottom: 10rem; */
 }
 
 .credit span{
@@ -1000,20 +1046,15 @@ section{
    height: 25rem;
 }
 
-
-
 /* media queries  */
 
 @media (max-width:991px) {
-   
    html{
       font-size: 55%;
    }
-
 }
 
 @media (max-width:768px){
-
    #menu-btn{
       display: inline-block;
    }
@@ -1036,11 +1077,9 @@ section{
    .header .flex .navbar.active{
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
    }
-
 }
 
 @media (max-width:450px) {
-   
    html{
       font-size: 50%;
    }
@@ -1074,7 +1113,4 @@ section{
       flex-flow: column;
       gap:0;
    }   
-
 }
-
-/*new styles*/
