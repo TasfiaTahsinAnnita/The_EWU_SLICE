@@ -4,9 +4,22 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// Check if there’s any output before session_start()
+ob_start();
+
 include 'components/connect.php';
 
+// Verify database connection
+if (!$conn) {
+   die('Database connection failed. Check components/connect.php');
+}
+
 session_start();
+
+// Check if session started successfully
+if (!session_id()) {
+   die('Session failed to start.');
+}
 
 if (isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
@@ -73,7 +86,13 @@ $grand_total = 0;
 </head>
 <body>
 
-<?php include 'components/user_header.php'; ?>
+<?php 
+// Check if user_header.php exists
+if (!file_exists('components/user_header.php')) {
+   die('Error: components/user_header.php not found.');
+}
+include 'components/user_header.php'; 
+?>
 
 <div class="heading">
    <h3>Shopping Cart</h3>
@@ -84,6 +103,11 @@ $grand_total = 0;
    <h1 class="title">Your Cart</h1>
 
    <?php
+   // Ensure $message is always an array (original fix)
+   if (!is_array($message)) {
+      $message = [];
+   }
+
    if (!empty($message)) {
       foreach ($message as $msg) {
          echo '<p class="message">' . htmlspecialchars($msg) . '</p>';
@@ -103,13 +127,13 @@ $grand_total = 0;
          if ($select_cart->rowCount() > 0) {
             while ($fetch_cart = $select_cart->fetch(PDO::FETCH_ASSOC)) {
 
-               // Safe toppings handling
-               $toppings_json = $fetch_cart['toppings'];
+               // Safe toppings handling with stricter validation
+               $toppings_json = $fetch_cart['toppings'] ?? '';
                if (empty($toppings_json) || !is_string($toppings_json)) {
                   $toppings = [];
                } else {
                   $decoded = json_decode($toppings_json, true);
-                  $toppings = is_array($decoded) ? $decoded : [];
+                  $toppings = (is_array($decoded) && !empty($decoded)) ? $decoded : [];
                }
 
                $sub_total = $fetch_cart['price'] * $fetch_cart['quantity'];
@@ -174,8 +198,18 @@ $grand_total = 0;
    </div>
 </section>
 
-<?php include 'components/footer.php'; ?>
+<?php 
+// Check if footer.php exists
+if (!file_exists('components/footer.php')) {
+   die('Error: components/footer.php not found.');
+}
+include 'components/footer.php'; 
+?>
 
 <script src="js/script.js"></script>
 </body>
 </html>
+<?php
+// Clean up output buffer
+ob_end_flush();
+?>
